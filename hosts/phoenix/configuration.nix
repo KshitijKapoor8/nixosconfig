@@ -118,7 +118,7 @@
   users.users.shim = {
     isNormalUser = true;
     description = "Kshitij K";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "users" "root"];
     packages = with pkgs; [
       zsh
     ];
@@ -127,10 +127,6 @@
   # Install firefox.
   programs.firefox.enable = true;
   programs.vim.enable = true;
-  programs.neovim = {
-    enable = true;
-    defaultEditor = true;
-  };
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -186,7 +182,6 @@
     mpvpaper
     swww
     rofi-wayland
-    kitty
     egl-wayland
   ];
 

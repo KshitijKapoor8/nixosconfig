@@ -1,0 +1,3 @@
+[submodule "nvimconfig"]
+	path = modules/home-manager/shells/nvimconfig
+	url = git@github.com:KshitijKapoor8/nvimconfig.git

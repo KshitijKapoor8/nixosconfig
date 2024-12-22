@@ -34,7 +34,7 @@ in {
 
     # Zsh history settings
     history = {
-      path = "~/.zsh_history";
+      path = "/home/shim/.zsh_history";
       size = 5000;
     };
 
@@ -62,6 +62,6 @@ in {
   programs.oh-my-posh = {
     enable = true;
 
-    settings = builtins.fromJSON (builtins.unsafeDiscardStringContext (builtins.readFile "${pkgs.oh-my-posh}/share/oh-my-posh/themes/space.omp.json"));
+    settings = builtins.fromTOML (builtins.unsafeDiscardStringContext (builtins.readFile (./zen.toml)));
   };
 }

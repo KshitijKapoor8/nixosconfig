@@ -6,6 +6,7 @@
   imports = [
     ../../modules/home-manager/shells
     ../../modules/home-manager/terminals
+    ../../modules/home-manager/editors
   ];
 
   # Shared Home Manager options
@@ -15,11 +16,13 @@
 
   programs.home-manager.enable = true;
 
+  # xdg.configFile.nvim.source = ../../modules/home-manager/shells/nvimconfig;
+
   # Host-specific user configuration
   home.packages = with pkgs; [
-    git
-    neovim
     bat
+    btop
+    git
     fzf
     zoxide
     zsh-syntax-highlighting

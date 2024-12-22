@@ -3,5 +3,8 @@
   config,
   ...
 }: {
-  imports = [./wezterm.nix];
+  imports = [
+    ./wezterm.nix
+    ./kitty.nix
+  ];
 }

@@ -3,11 +3,19 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    wezterm-flake.url = "github:wez/wezterm/main?dir=nix";
-    wezterm-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    wezterm-flake = {
+      url = "github:wez/wezterm/main?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -36,7 +44,9 @@
       shim = home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {inherit inputs;};
-        modules = [./hosts/phoenix/home.nix];
+        modules = [
+	  ./hosts/phoenix/home.nix
+	];
       };
     };
   };

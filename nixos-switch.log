@@ -1,0 +1,4 @@
+error:
+       … while fetching the input 'git+file:///home/shim/dotfiles/nixos'
+
+       error: opening Git repository '"/home/shim/dotfiles/nixos"': repository path '/home/shim/dotfiles/nixos' is not owned by current user

@@ -11,11 +11,23 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.home-manager
   ];
 
   # Use the systemd-boot EFI boot loader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      efiSupport = true;
+      device = "nodev";
+    };
+  };
+
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   networking.hostName = "phoenix"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -35,7 +47,6 @@
   i18n.defaultLocale = "en_US.UTF-8";
 
   hardware.nvidia = {
-    # Modesetting is required.
     modesetting.enable = true;
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
@@ -44,17 +55,8 @@
     # of just the bare essentials.
     powerManagement.enable = false;
 
-    # Fine-grained power management. Turns off GPU when not in use.
-    # Experimental and only works on modern Nvidia GPUs (Turing or newer).
     powerManagement.finegrained = false;
 
-    # Use the NVidia open source kernel module (not to be confused with the
-    # independent third-party "nouveau" open source driver).
-    # Support is limited to the Turing and later architectures. Full list of
-    # supported GPUs is at:
-    # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus
-    # Only available from driver 515.43.04+
-    # Currently alpha-quality/buggy, so false is currently the recommended setting.
     open = false;
 
     # Enable the Nvidia settings menu,
@@ -115,6 +117,12 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      shim = import ./home.nix;
+    };
+  };
   users.users.shim = {
     isNormalUser = true;
     description = "Kshitij K";
@@ -160,6 +168,13 @@
     };
   };
 
+  stylix.enable = true;
+  stylix.image = ../../wallpaper.jpg;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+  stylix.polarity = "dark";
+
+
+
   # xdg.portal = {
   #   enable = true;
   #   extraPortals = [pkgs.xdg-desktop-portal-gtk];
@@ -181,7 +196,6 @@
     wpaperd
     mpvpaper
     swww
-    rofi-wayland
     egl-wayland
   ];
 

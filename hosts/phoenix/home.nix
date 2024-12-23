@@ -1,12 +1,15 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = [
+    ../../modules/home-manager/apps
+    ../../modules/home-manager/de
+    ../../modules/home-manager/editors
     ../../modules/home-manager/shells
     ../../modules/home-manager/terminals
-    ../../modules/home-manager/editors
   ];
 
   # Shared Home Manager options
@@ -16,14 +19,18 @@
 
   programs.home-manager.enable = true;
 
-  # xdg.configFile.nvim.source = ../../modules/home-manager/shells/nvimconfig;
+  hyprlandLayout = "phoenix";
 
   # Host-specific user configuration
   home.packages = with pkgs; [
     bat
     btop
-    git
+    fastfetch
     fzf
+    git
+    neofetch
+    ripgrep
+    xclip
     zoxide
     zsh-syntax-highlighting
     zsh-autosuggestions

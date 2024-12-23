@@ -7,9 +7,7 @@
 in {
   programs.wezterm = {
     enable = true;
-    package = inputs.wezterm-flake.packages.${pkgs.system}.default;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
+    package = inputs.wezterm.packages.${pkgs.system}.default;
     extraConfig = builtins.readFile ./wezterm.lua;
   };
 }

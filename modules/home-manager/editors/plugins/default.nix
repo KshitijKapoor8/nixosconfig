@@ -6,9 +6,15 @@
 }: let
 in {
   imports = [
+    ./conform.nix
+    ./extra.nix
+    ./lsp.nix
+    ./noice.nix
+    ./notify.nix
+    ./oil.nix
     ./telescope.nix
     ./treesitter.nix
-    ./themes.nix
+    # ./themes.nix
   ];
 
   programs.nixvim = {
@@ -30,6 +36,13 @@ in {
         enable = true;
         settings = {
         };
+      };
+
+      web-devicons.enable = true;
+
+      treesitter-context = {
+        enable = true;
+        settings = { max_lines = 5; };
       };
 
       # neodev = {

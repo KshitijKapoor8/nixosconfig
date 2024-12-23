@@ -4,20 +4,29 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    wezterm-flake = {
-      url = "github:wez/wezterm/main?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
     };
 
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    stylix.url = "github:danth/stylix";
+
+    wezterm = {
+      url = "github:wez/wezterm/main?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = {
@@ -32,22 +41,22 @@
   in {
     nixosConfigurations = {
       phoenix = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs;};
+        specialArgs = { inherit inputs system; };
         modules = [
           ./hosts/phoenix/configuration.nix
+          inputs.stylix.nixosModules.stylix
         ];
       };
     };
 
-    homeConfigurations = {
-      shim = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {inherit inputs;};
-        modules = [
-	  ./hosts/phoenix/home.nix
-	];
-      };
-    };
+    # homeConfigurations = {
+    #   shim = home-manager.lib.homeManagerConfiguration {
+    #     inherit pkgs;
+    #     extraSpecialArgs = {inherit inputs;};
+    #     modules = [
+    #      ./hosts/phoenix/home.nix
+    #    ];
+    #   };
+    # };
   };
 }

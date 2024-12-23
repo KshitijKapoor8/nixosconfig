@@ -1,7 +1,6 @@
 {
   programs.nixvim.plugins.oil = {
     enable = true;
-    lazyLoad.settings.cmd = "Oil";
 
     settings = {
       default_file_explorer = true;

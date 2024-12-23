@@ -192,32 +192,60 @@
       {
         mode = "n";
         key = "<leader>v";
-        action = "<cmd>hsplit<CR>";
+        action = "<cmd>split<CR>";
         options = { desc = "Split horizontally"; };
       }
+      # Move between splits
+      {
+        mode = "n";
+        key = "<C-j>";
+        action = "<C-w>j";
+        options = { desc = "Move down"; silent = true; };
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action = "<C-w>k";
+        options = { desc = "Move up"; silent = true; };
+      }
+      {
+        mode = "n";
+        key = "<C-h>";
+        action = "<C-w>h";
+        options = { desc = "Move left"; silent = true; };
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action = "<C-w>l";
+        options = { desc = "Move right"; silent = true; };
+      }
+
+
+      # Resize splits
       {
         mode = "n";
         key = "<C-S-Down>";
         action = ":resize +2<CR>";
-        options = { desc = "Resize Horizontal Split Down"; };
+        options = { desc = "Resize Horizontal Split Down"; silent = true; };
       }
       {
         mode = "n";
         key = "<C-S-Up>";
         action = ":resize -2<CR>";
-        options = { desc = "Resize Horizontal Split Up"; };
+        options = { desc = "Resize Horizontal Split Up"; silent = true; };
       }
       {
         mode = "n";
         key = "<C-Left>";
         action = ":vertical resize -2<CR>";
-        options = { desc = "Resize Vertical Split Down"; };
+        options = { desc = "Resize Vertical Split Left"; silent = true; };
       }
       {
         mode = "n";
         key = "<C-Right>";
         action = ":vertical resize +2<CR>";
-        options = { desc = "Resize Vertical Split Up"; };
+        options = { desc = "Resize Vertical Split Right"; silent = true; };
       }
     ];
   };

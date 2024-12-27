@@ -12,6 +12,7 @@
     c = "clear";
     sp = "spotify_player";
     z = "__zoxide_z";
+    rb = "sudo nixos-rebuild switch --flake ~/dotfiles/nixos#paddington";
   };
 in {
   programs.bash = {

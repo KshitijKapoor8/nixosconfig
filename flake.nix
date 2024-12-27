@@ -26,7 +26,6 @@
       url = "github:wez/wezterm/main?dir=nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
   };
 
   outputs = {
@@ -34,16 +33,19 @@
     nixpkgs,
     home-manager,
     ...
-  } @ inputs: let
+  } @ inputs: 
+  let
     system = "x86_64-linux";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit system;
+    };
     lib = nixpkgs.lib;
   in {
     nixosConfigurations = {
-      phoenix = nixpkgs.lib.nixosSystem {
+      paddington = nixpkgs.lib.nixosSystem {
         specialArgs = { inherit inputs system; };
         modules = [
-          ./hosts/phoenix/configuration.nix
+          ./hosts/paddington/configuration.nix
           inputs.stylix.nixosModules.stylix
         ];
       };

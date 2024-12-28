@@ -21,7 +21,6 @@
 
   # Host-specific user configuration
   home.packages = with pkgs; [
-    bat
     btop
     fastfetch
     fzf

@@ -18,11 +18,13 @@
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
+      efiSysMountPoint = "/boot";
     };
     grub = {
+      enable = true;
       efiSupport = true;
       device = "nodev";
+      useOSProber = true;
     };
   };
 
@@ -118,7 +120,7 @@
   };
   users.users.shim = {
     isNormalUser = true;
-    description = "Kshitij K";
+    description = "shim";
     extraGroups = ["networkmanager" "wheel" "users" "root"];
     packages = with pkgs; [
       zsh
@@ -167,6 +169,7 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alejandra
+    bat
     dunst
     libnotify
     pciutils
@@ -174,7 +177,6 @@
     adwaita-icon-theme
     protonup
     mangohud
-    waybar
     eww
     hyprpaper
     swaybg

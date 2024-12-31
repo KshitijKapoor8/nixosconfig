@@ -16,17 +16,24 @@
   home.username = "shim";
   home.homeDirectory = "/home/shim";
   home.stateVersion = "24.11"; # Match your NixOS state version
-
   programs.home-manager.enable = true;
+
+  stylix.targets.btop.enable = true;
 
   # Host-specific user configuration
   home.packages = with pkgs; [
     btop
     fastfetch
+    hddtemp 
     fzf
     git
+    lm_sensors
     neofetch
+    nwg-dock-hyprland
+    obsidian
     ripgrep
+    rofi-wayland
+    webcord
     xclip
     xfce.thunar
     zoxide

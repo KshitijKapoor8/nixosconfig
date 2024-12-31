@@ -14,6 +14,8 @@
     inputs.home-manager.nixosModules.home-manager 
   ];
 
+  home-manager.useGlobalPkgs = true;
+
   # Use the systemd-boot EFI boot loader.
   boot.loader = {
     efi = {
@@ -64,6 +66,8 @@
   };
 
   services.xserver.videoDrivers = ["amdgpu"];
+
+  services.flatpak.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -131,8 +135,6 @@
   programs.firefox.enable = true;
   programs.vim.enable = true;
 
-  programs.gamemode.enable = true;
-
   environment.sessionVariables = {
     WLR_NO_HARDWARE_CURSORS = "1";
     NIXOS_OZONE_WL = "1";
@@ -155,21 +157,26 @@
   };
 
   stylix.enable = true;
-  stylix.image = ../../wallpaper.png;
-  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-macchiato.yaml";
+  stylix.autoEnable = true;
+  stylix.image = ../../wallpapers/cf1.jpg;
+  stylix.base16Scheme = "${pkgs.base16-schemes}/share/themes/rose-pine-moon.yaml";
   stylix.polarity = "dark";
+  stylix.opacity = {
+    applications = 0.7;
+    terminal = 0.5;
+    desktop = 0.7;
+    popups = 0.7;
+  };
 
   xdg.portal.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-
-
-
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     alejandra
     bat
+    cava
     dunst
     libnotify
     pciutils
@@ -184,6 +191,7 @@
     mpvpaper
     swww
     egl-wayland
+    inputs.ghostty.packages.x86_64-linux.default
   ];
 
   environment.shells = [
@@ -205,7 +213,10 @@
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
     localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
+    gamescopeSession.enable = true;
   };
+
+  programs.gamemode.enable = true;
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;

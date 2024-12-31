@@ -4,8 +4,10 @@
   ...
 }: {
   imports = [
+    ./ags
     ./hyprland.nix
-    ./rofi.nix
+    ./hyprpanel.nix
+    ./rofi
     ./waybar
   ];
 }

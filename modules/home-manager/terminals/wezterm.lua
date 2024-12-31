@@ -48,6 +48,8 @@ config.enable_wayland = true
 
 config.window_decorations = "NONE"
 
+config.window_background_opacity = 0.8
+
 config.window_padding = {
 	left = 0,
 	right = 0,

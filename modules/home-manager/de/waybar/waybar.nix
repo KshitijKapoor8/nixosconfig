@@ -1,14 +1,16 @@
-{ 
-custom ? {
-  font = "RobotoMono Nerd Font";
-  fontsize = "12";
-  primary_accent = "cba6f7";
-  secondary_accent = "89b4fa";
-  tertiary_accent = "f5f5f5";
-  background = "11111B";
-  opacity = ".85";
-  cursor = "Numix-Cursor";
-}, pkgs, ... }:
+{  pkgs, ... }:
+let
+  custom = {
+    font = "RobotoMono Nerd Font";
+    fontsize = "12";
+    primary_accent = "cba6f7";
+    secondary_accent = "89b4fa";
+    tertiary_accent = "f5f5f5";
+    background = "11111B";
+    opacity = ".85";
+    cursor = "Numix-Cursor";
+  };
+in
 {
   home.packages = with pkgs; [
     playerctl    
@@ -86,16 +88,16 @@ custom ? {
         monstercat = false;
         waves = false;
         input_delay = 2;
-        format-icons = [ 
-          "<span foreground='#${custom.primary_accent}'>▁</span>" 
-          "<span foreground='#${custom.primary_accent}'>▂</span>" 
-          "<span foreground='#${custom.primary_accent}'>▃</span>" 
-          "<span foreground='#${custom.primary_accent}'>▄</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▅</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▆</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▇</span>" 
-          "<span foreground='#${custom.secondary_accent}'>█</span>" 
-        ];
+        # format-icons = [ 
+        #   "<span foreground='#${custom.primary_accent}'>▁</span>" 
+        #   "<span foreground='#${custom.primary_accent}'>▂</span>" 
+        #   "<span foreground='#${custom.primary_accent}'>▃</span>" 
+        #   "<span foreground='#${custom.primary_accent}'>▄</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>▅</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>▆</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>▇</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>█</span>" 
+        # ];
       };
       "cava#right" = {
         framerate = 60;
@@ -111,16 +113,16 @@ custom ? {
         monstercat = false;
         waves = false;
         input_delay = 2;
-        format-icons = [ 
-          "<span foreground='#${custom.primary_accent}'>▁</span>" 
-          "<span foreground='#${custom.primary_accent}'>▂</span>" 
-          "<span foreground='#${custom.primary_accent}'>▃</span>" 
-          "<span foreground='#${custom.primary_accent}'>▄</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▅</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▆</span>" 
-          "<span foreground='#${custom.secondary_accent}'>▇</span>" 
-          "<span foreground='#${custom.secondary_accent}'>█</span>" 
-        ];
+        # format-icons = [ 
+        #   "<span foreground='#${custom.primary_accent}'>▁</span>" 
+        #   "<span foreground='#${custom.primary_accent}'>▂</span>" 
+        #   "<span foreground='#${custom.primary_accent}'>▃</span>" 
+        #   "<span foreground='#${custom.primary_accent}'>▄</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>▅</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>▆</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>▇</span>" 
+        #   "<span foreground='#${custom.secondary_accent}'>█</span>" 
+        # ];
       };
       "custom/playerctl#backward"= {
         format= "󰙣 "; 
@@ -215,20 +217,18 @@ custom ? {
             * {
                 border: none;
                 border-radius: 0px;
-                font-family: ${custom.font};
+                /*font-family: ${custom.font};*/
                 font-size: 14px;
                 min-height: 0;
             }
 
             window#waybar {
-                background: ${custom.palette.primary_background_rgba};
             }
 
             #cava.left, #cava.right {
-                background: #${custom.palette.tertiary_background_hex};
                 margin: 5px; 
                 padding: 8px 16px;
-                color: #${custom.primary_accent};
+                /*color: #${custom.primary_accent};*/
             }
             #cava.left {
                 border-radius: 24px 10px 24px 10px;
@@ -237,24 +237,22 @@ custom ? {
                 border-radius: 10px 24px 10px 24px;
             }
             #workspaces {
-                background: #${custom.palette.tertiary_background_hex};
                 margin: 5px 5px;
                 padding: 8px 5px;
                 border-radius: 16px;
-                color: #${custom.primary_accent}
+                /*color: #${custom.primary_accent}*/
             }
             #workspaces button {
                 padding: 0px 5px;
                 margin: 0px 3px;
                 border-radius: 16px;
                 color: transparent;
-                background: ${custom.palette.primary_background_rgba};
                 transition: all 0.3s ease-in-out;
             }
 
             #workspaces button.active {
                 background-color: #${custom.secondary_accent};
-                color: #${custom.background};
+                /*color: #${custom.background};*/
                 border-radius: 16px;
                 min-width: 50px;
                 background-size: 400% 400%;
@@ -271,7 +269,6 @@ custom ? {
 
             #tray, #pulseaudio, #network, #battery,
             #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward{
-                background: #${custom.palette.tertiary_background_hex};
                 font-weight: bold;
                 margin: 5px 0px;
             }
@@ -283,7 +280,6 @@ custom ? {
             }
             #clock {
                 color: #${custom.tertiary_accent};
-                background: #${custom.palette.tertiary_background_hex};
                 border-radius: 0px 0px 0px 40px;
                 padding: 10px 10px 15px 25px;
                 margin-left: 7px;
@@ -292,7 +288,6 @@ custom ? {
             }
             #custom-launcher {
                 color: #${custom.secondary_accent};
-                background: #${custom.palette.tertiary_background_hex};
                 border-radius: 0px 0px 40px 0px;
                 margin: 0px;
                 padding: 0px 35px 0px 15px;
@@ -300,7 +295,6 @@ custom ? {
             }
 
             #custom-playerctl.backward, #custom-playerctl.play, #custom-playerctl.foward {
-                background: #${custom.palette.tertiary_background_hex};
                 font-size: 22px;
             }
             #custom-playerctl.backward:hover, #custom-playerctl.play:hover, #custom-playerctl.foward:hover{
@@ -323,7 +317,6 @@ custom ? {
                 margin-right: 7px
             }
             #custom-playerlabel {
-                background: #${custom.palette.tertiary_background_hex};
                 color: #${custom.tertiary_accent};
                 padding: 0 20px;
                 border-radius: 24px 10px 24px 10px;
@@ -331,7 +324,6 @@ custom ? {
                 font-weight: bold;
             }
             #window{
-                background: #${custom.palette.tertiary_background_hex};
                 padding-left: 15px;
                 padding-right: 15px;
                 border-radius: 16px;

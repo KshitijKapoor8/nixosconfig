@@ -45,6 +45,10 @@ in {
         settings = { max_lines = 5; };
       };
 
+      transparent = {
+        enable = true;
+      };
+
       # neodev = {
       #   enabled = true;
       # };
